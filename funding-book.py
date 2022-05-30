@@ -4,7 +4,7 @@ from rich.console import Console
 from rich.table import Table
 from rich import print
 
-def output_funding(precision, ):
+def output_funding(precision):
     # Validate precision
     if precision < 0 or precision > 4:
         print("Invalid precision. Please use a value between 0 and 4.")
@@ -32,7 +32,6 @@ def output_funding(precision, ):
         cumulative_amount = 0
         for funding_record in funding_raw:
             # Only output funding for offers (i.e. where the amount is a positive value)
-            
             if funding_record[3] > 0:
                 cumulative_amount += funding_record[3]
                 table.add_row(  f"[green]{round(funding_record[0] * 100, 6):.6f}[/green]", 
