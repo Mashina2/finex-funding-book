@@ -1,5 +1,5 @@
 # finex-funding-book
-Simple script to output the offers in the Bitfinex funding book
+Simple script to output the offers in the Bitfinex funding book for USD.
 
 This script uses the requests library to pull the funding data from the Bitfinex API.
 It also uses the Rich library, in order to output the funding book as a table supporting color in the console.
