@@ -34,7 +34,6 @@ def output_funding(precision):
 
         cumulative_amount = 0
         previous_cumulative_amount = 0
-        previous_funding_record = None
         wall_detection_data = []
         for funding_record in funding_raw:
             # Only output funding for offers (i.e. where the amount is a positive value)
@@ -47,16 +46,13 @@ def output_funding(precision):
                         # Wall detected, add to our list of walls detected
                         wall_detection_data.append({"cumulative_amount": cumulative_amount, 
                                                     "previous_cumulative_amount": previous_cumulative_amount,
-                                                    "funding_record": funding_record,
-                                                    "previous_funding_record": previous_funding_record})
+                                                    "funding_record": funding_record})
 
                 table.add_row(  f"[green]{round(funding_record[0] * 100, 6):.6f}[/green]", 
                                 f"[green]{funding_record[1]}[/green]", 
                                 f"[green]{funding_record[2]}[/green]", 
                                 f"[green]{round(funding_record[3], 2):,.2f}[/green]",
                                 f"[green]{round(cumulative_amount, 2):,.2f}[/green]")
-
-            previous_funding_record = funding_record
 
         # Output the funding offers
         console = Console()      
