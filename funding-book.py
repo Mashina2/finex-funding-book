@@ -4,6 +4,9 @@ from rich.console import Console
 from rich.table import Table
 from rich import print
 
+WALL_THRESHOLD_PERCENT = 200.0
+WALL_THRESHOLD_CUM_AMOUNT = 100000
+
 def output_funding(precision):
     # Validate precision
     if precision < 0 or precision > 4:
@@ -30,18 +33,43 @@ def output_funding(precision):
         table.add_column("CUM. AMT", justify="right")
 
         cumulative_amount = 0
+        previous_cumulative_amount = 0
+        previous_funding_record = None
+        wall_detection_data = []
         for funding_record in funding_raw:
             # Only output funding for offers (i.e. where the amount is a positive value)
             if funding_record[3] > 0:
+                previous_cumulative_amount = cumulative_amount
                 cumulative_amount += funding_record[3]
+                if previous_cumulative_amount > 0:
+                    cumulative_amount_increase_percent = ((cumulative_amount  - previous_cumulative_amount) / previous_cumulative_amount) * 100
+                    if cumulative_amount_increase_percent >= WALL_THRESHOLD_PERCENT and previous_cumulative_amount >= WALL_THRESHOLD_CUM_AMOUNT:
+                        # Capture wall data
+                        wall_detection_data.append({"cumulative_amount": cumulative_amount, 
+                                                    "previous_cumulative_amount": previous_cumulative_amount,
+                                                    "funding_record": funding_record,
+                                                    "previous_funding_record": previous_funding_record})
+
                 table.add_row(  f"[green]{round(funding_record[0] * 100, 6):.6f}[/green]", 
                                 f"[green]{funding_record[1]}[/green]", 
                                 f"[green]{funding_record[2]}[/green]", 
                                 f"[green]{round(funding_record[3], 2):.2f}[/green]",
                                 f"[green]{round(cumulative_amount, 2):.2f}[/green]")
 
+            previous_funding_record = funding_record
+
+        # Output the funding offers
         console = Console()      
         console.print(table)
+
+        # Output the wall detection data
+        if len(wall_detection_data) <= 0:
+            print("No significant walls detected.")
+        else:
+            for data in wall_detection_data:
+                print(f"Wall detected at rate: {data['funding_record'][0]:,.6f}    Cum. Amt: {data['cumulative_amount']:,.2f}    Prev. Cum. Amt: {data['previous_cumulative_amount']:,.2f}")
+            
+        print("")
 
     except Exception as ex:
         print(f"An error occurred: {str(ex)}")
@@ -50,8 +78,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = 'Define the precision argument to control funding rate precision on the offer side.')
     parser.add_argument('--precision', 
                         type=int,
-                        default=1,
-                        help='Rate Precision. From 0 - 4. Default = 1')
+                        default=4,
+                        help='Rate Precision. From 0 - 4. Default = 4')
     args = parser.parse_args()
 
     output_funding(args.precision)
