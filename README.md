@@ -11,7 +11,7 @@ To install the required libraries, on the console prompt run:
 
 The script has one parameter to control its behaviour:
 
-    precision - The precision of the rate. This should be a value from 0 to 4. Default = 4
+    precision - The precision of the rate. This should be a value from 0 to 4. Lower value means higher precision. Default = 4
 
 Running the script:
 
