@@ -45,7 +45,7 @@ def output_funding(precision):
         print(f"An error occurred: {str(ex)}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = 'Say hello')
+    parser = argparse.ArgumentParser(description = 'Define the precision argument to control funding rate precision on the offer side.')
     parser.add_argument('--precision', 
                         type=int,
                         default=1,
