@@ -25,18 +25,21 @@ def output_funding(precision, ):
         table = Table(show_header=True, header_style="bold")
         table.add_column("RATE")
         table.add_column("PERIOD")
-        table.add_column("TOTAL")
+        table.add_column("COUNT")
         table.add_column("AMOUNT")
+        table.add_column("CUM. AMT")
 
+        cumulative_amount = 0
         for funding_record in funding_raw:
             # Only output funding for offers (i.e. where the amount is a positive value)
+            
             if funding_record[3] > 0:
-                funding_record[0] = f"[green]{round(funding_record[0] * 100, 6):.6f}[/green]"
-                funding_record[1] = f"[green]{funding_record[1]}[/green]"
-                funding_record[2] = f"[green]{funding_record[2]}[/green]"
-                funding_record[3] = f"[green]{round(funding_record[3], 2):.2f}[/green]"
-                
-                table.add_row(funding_record[0], funding_record[1], funding_record[2], funding_record[3])
+                cumulative_amount += funding_record[3]
+                table.add_row(  f"[green]{round(funding_record[0] * 100, 6):.6f}[/green]", 
+                                f"[green]{funding_record[1]}[/green]", 
+                                f"[green]{funding_record[2]}[/green]", 
+                                f"[green]{round(funding_record[3], 2):.2f}[/green]",
+                                f"[green]{round(cumulative_amount, 2):.2f}[/green]")
 
         console = Console()      
         console.print(table)
