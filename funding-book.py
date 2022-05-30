@@ -44,7 +44,7 @@ def output_funding(precision):
                 if previous_cumulative_amount > 0:
                     cumulative_amount_increase_percent = ((cumulative_amount  - previous_cumulative_amount) / previous_cumulative_amount) * 100
                     if cumulative_amount_increase_percent >= WALL_THRESHOLD_PERCENT and previous_cumulative_amount >= WALL_THRESHOLD_CUM_AMOUNT:
-                        # Capture wall data
+                        # Wall detected, add to our list of walls detected
                         wall_detection_data.append({"cumulative_amount": cumulative_amount, 
                                                     "previous_cumulative_amount": previous_cumulative_amount,
                                                     "funding_record": funding_record,
