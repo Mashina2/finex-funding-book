@@ -60,7 +60,7 @@ def output_funding(precision):
 
         # Output the wall detection data
         if len(wall_detection_data) <= 0:
-            print("No significant walls detected.")
+            print(f"No significant walls detected with the current precision setting ({precision}).")
         else:
             for data in wall_detection_data:
                 print(f"Wall detected at rate: {data['funding_record'][0]:>8,.6f}   Cum. Amt: {data['cumulative_amount']:>15,.2f}   Prev. Cum. Amt: {data['previous_cumulative_amount']:>15,.2f}")
