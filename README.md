@@ -6,10 +6,10 @@ It also uses the Rich library, in order to output the funding book as a table su
 
 To install the required libraries, on the console prompt run:
 
-  pip install -r requirements.txt
+    pip install -r requirements.txt
 
 The script has a parameters to control its behaviour:
-  precision - The precision of the rate. This should be a value from 1 to 4. Default = 1
+    precision - The precision of the rate. This should be a value from 1 to 4. Default = 1
 
 Running the script:
 
