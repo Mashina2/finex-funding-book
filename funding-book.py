@@ -4,13 +4,13 @@ from rich.console import Console
 from rich.table import Table
 from rich import print
 
-def output_funding(precision):
+def output_funding(precision, ):
     # Validate precision
     if precision < 0 or precision > 4:
         print("Invalid precision. Please use a value between 0 and 4.")
         return
 
-    funding_url = f"https://api-pub.bitfinex.com/v2/book/fUSD/P{precision}?len=100"
+    funding_url = f"https://api-pub.bitfinex.com/v2/book/fUSD/P{precision}?len=250"
     try:
         user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0"
         request_headers = {'User-Agent': user_agent}
