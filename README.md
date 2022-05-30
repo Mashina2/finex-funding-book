@@ -11,8 +11,8 @@ To install the required libraries, on the console prompt run:
 
 The script has a parameters to control its behaviour:
 
-    precision - The precision of the rate. This should be a value from 1 to 4. Default = 1
+    precision - The precision of the rate. This should be a value from 0 to 4. Default = 4
 
 Running the script:
 
-![image](https://user-images.githubusercontent.com/54691174/170957460-0f648cf9-f520-4738-b7d7-1627cc7479fc.png)
+![image](https://user-images.githubusercontent.com/54691174/170968694-754feb73-803d-4adb-aca8-9b3816f22009.png)
