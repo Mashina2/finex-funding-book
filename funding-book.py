@@ -6,8 +6,8 @@ from rich import print
 
 def output_funding(precision):
     # Validate precision
-    if precision < 1 or precision > 3:
-        print("Invalid precision. Please use a value between 1 and 4.")
+    if precision < 0 or precision > 4:
+        print("Invalid precision. Please use a value between 0 and 4.")
         return
 
     funding_url = f"https://api-pub.bitfinex.com/v2/book/fUSD/P{precision}?len=100"
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     parser.add_argument('--precision', 
                         type=int,
                         default=1,
-                        help='Rate Precision. From 1 - 4. Default = 1')
+                        help='Rate Precision. From 0 - 4. Default = 1')
     args = parser.parse_args()
 
     output_funding(args.precision)
