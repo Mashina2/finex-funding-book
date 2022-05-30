@@ -14,4 +14,4 @@ The script has a parameters to control its behaviour:
 
 Running the script:
 
-![image](https://user-images.githubusercontent.com/54691174/170951452-a9699f20-aeea-48df-8eba-50a735348a3d.png)
+![image](https://user-images.githubusercontent.com/54691174/170957013-214a7d86-e9f7-469f-9ecd-2fcf2f27d2a6.png)
