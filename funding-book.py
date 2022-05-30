@@ -75,7 +75,7 @@ if __name__ == "__main__":
     parser.add_argument('--precision', 
                         type=int,
                         default=4,
-                        help='Rate Precision. From 0 - 4. Default = 4')
+                        help='Rate Precision. From 0 - 4. Lower value means higher precision. Default = 4')
     args = parser.parse_args()
 
     output_funding(args.precision)
