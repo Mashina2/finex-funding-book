@@ -23,11 +23,11 @@ def output_funding(precision, ):
         funding_raw = response.json()
 
         table = Table(show_header=True, header_style="bold")
-        table.add_column("RATE")
-        table.add_column("PERIOD")
-        table.add_column("COUNT")
-        table.add_column("AMOUNT")
-        table.add_column("CUM. AMT")
+        table.add_column("RATE", justify="right")
+        table.add_column("PERIOD", justify="center")
+        table.add_column("COUNT", justify="center")
+        table.add_column("AMOUNT", justify="right")
+        table.add_column("CUM. AMT", justify="right")
 
         cumulative_amount = 0
         for funding_record in funding_raw:
