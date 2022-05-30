@@ -53,8 +53,8 @@ def output_funding(precision):
                 table.add_row(  f"[green]{round(funding_record[0] * 100, 6):.6f}[/green]", 
                                 f"[green]{funding_record[1]}[/green]", 
                                 f"[green]{funding_record[2]}[/green]", 
-                                f"[green]{round(funding_record[3], 2):.2f}[/green]",
-                                f"[green]{round(cumulative_amount, 2):.2f}[/green]")
+                                f"[green]{round(funding_record[3], 2):,.2f}[/green]",
+                                f"[green]{round(cumulative_amount, 2):,.2f}[/green]")
 
             previous_funding_record = funding_record
 
